@@ -2,6 +2,7 @@ package com.course.demojavacore;
 
 import com.course.demojavacore.service.ExaminerService;
 import com.course.demojavacore.service.QuestionService;
+import com.course.demojavacore.service.impl.ExaminerServiceImpl;
 import com.course.demojavacore.storage.Question;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ import java.util.List;
     QuestionService questionService;
 
     @InjectMocks
-    ExaminerService service;
+    ExaminerServiceImpl examinerService;
 
     List<Question> questionList = Arrays.asList(
             new Question("a", "z"),
@@ -43,7 +44,7 @@ import java.util.List;
                 .thenReturn(questionList.get(0))
                 .thenReturn(questionList.get(1));
 
-        Collection<Question> result = service.getQuestions(amount);
+        Collection<Question> result = examinerService.getQuestions(amount);
 
         assertEquals(amount, result.size());
         assertTrue(result.contains(questionList.get(0)));
